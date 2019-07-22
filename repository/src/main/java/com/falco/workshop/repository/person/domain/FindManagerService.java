@@ -18,7 +18,14 @@ public class FindManagerService {
         this.personRepository = personRepository;
     }
 
-    public Manager findByOrgUnitOrDefault(String orgUnitId) {
+    public Manager findByOrgUnitOrDefault(String orgUnitId, Boolean noCache) {
+        if (noCache)
+            return findInCache(orgUnitId);
+        else
+            return personRepository.tryFindByOrgUnitId(orgUnitId).orElse(findDefaultManager());
+    }
+
+    private Manager findInCache(String orgUnitId) {
         try {
             return cache.get(orgUnitId, () -> personRepository.tryFindByOrgUnitId(orgUnitId).orElse(findDefaultManager()));
         } catch (ExecutionException e) {

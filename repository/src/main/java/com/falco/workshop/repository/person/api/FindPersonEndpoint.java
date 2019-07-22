@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class FindPersonEndpoint {
     private FindManagerService findManagerService;
 
-    public ManagerJS findOrgUnitManager(String orgUnitId) {
-        Manager person = findManagerService.findByOrgUnitOrDefault(orgUnitId);
+    public ManagerJS findOrgUnitManager(String orgUnitId, Boolean noCache) {
+        Manager person = findManagerService.findByOrgUnitOrDefault(orgUnitId,noCache);
         return new ManagerJS(
                 person.getId(),
                 orgUnitId,
