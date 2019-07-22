@@ -22,18 +22,18 @@ public class FindManagerService {
         if (noCache)
             return findInCache(orgUnitId);
         else
-            return personRepository.tryFindByOrgUnitId(orgUnitId).orElse(findDefaultManager());
+            return personRepository.findByOrgUnitId(orgUnitId).orElse(findDefaultManager());
     }
 
     private Manager findInCache(String orgUnitId) {
         try {
-            return cache.get(orgUnitId, () -> personRepository.tryFindByOrgUnitId(orgUnitId).orElse(findDefaultManager()));
+            return cache.get(orgUnitId, () -> personRepository.findByOrgUnitId(orgUnitId).orElse(findDefaultManager()));
         } catch (ExecutionException e) {
             throw new RuntimeException(e);
         }
     }
 
     private Manager findDefaultManager() {
-        return personRepository.tryFindByOrgUnitId(MAIN_ORGUNIT_ID).orElseThrow(RuntimeException::new);
+        return personRepository.findByOrgUnitId(MAIN_ORGUNIT_ID).orElseThrow(RuntimeException::new);
     }
 }

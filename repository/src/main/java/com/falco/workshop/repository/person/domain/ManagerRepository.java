@@ -11,7 +11,7 @@ public class ManagerRepository {
         this.managerDocumentRepository = managerDocumentRepository;
     }
 
-    Optional<Manager> tryFindByOrgUnitId(String orgUnitId) {
+    Optional<Manager> findByOrgUnitId(String orgUnitId) {
         return managerDocumentRepository.findByOrgUnitId(orgUnitId);
     }
 
