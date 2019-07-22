@@ -1,6 +1,6 @@
 package com.falco.workshop.repository.person.api;
 
-import com.falco.workshop.repository.person.domain.FindManagerService;
+import com.falco.workshop.repository.person.domain.FindingManagerService;
 import com.falco.workshop.repository.person.domain.Manager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class OrgUnitManagerEndpoint {
     @Autowired
-    private FindManagerService findManagerService;
+    private FindingManagerService findManagerService;
 
     public ManagerJS findOrgUnitManager(String orgUnitId, Boolean noCache) {
         Manager manager = findManagerService.findByOrgUnitOrDefault(orgUnitId, noCache);

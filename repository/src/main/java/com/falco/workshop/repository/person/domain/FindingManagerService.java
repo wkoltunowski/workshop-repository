@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 @Component
-public class FindManagerService {
+public class FindingManagerService {
     private static final String MAIN_ORGUNIT_ID = "123";
     @Autowired
     private final ManagerRepository managerRepository;
@@ -19,7 +19,7 @@ public class FindManagerService {
             .maximumSize(10000)
             .build();
 
-    public FindManagerService(ManagerRepository managerRepository) {
+    public FindingManagerService(ManagerRepository managerRepository) {
         this.managerRepository = managerRepository;
     }
 
