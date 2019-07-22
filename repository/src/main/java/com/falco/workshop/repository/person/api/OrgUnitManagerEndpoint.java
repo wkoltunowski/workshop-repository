@@ -5,16 +5,16 @@ import com.falco.workshop.repository.person.domain.Manager;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class FindPersonEndpoint {
+public class OrgUnitManagerEndpoint {
     private FindManagerService findManagerService;
 
     public ManagerJS findOrgUnitManager(String orgUnitId, Boolean noCache) {
-        Manager person = findManagerService.findByOrgUnitOrDefault(orgUnitId,noCache);
+        Manager manager = findManagerService.findByOrgUnitOrDefault(orgUnitId, noCache);
         return new ManagerJS(
-                person.getId(),
+                manager.getId(),
                 orgUnitId,
-                person.getFirstName(),
-                person.getLastName());
+                manager.getFirstName(),
+                manager.getLastName());
     }
 
     public static class ManagerJS {
