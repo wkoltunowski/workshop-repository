@@ -1,9 +1,11 @@
 package com.falco.workshop.repository.person.domain;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public class ManagerRepository {
     private final ManagerDocumentRepository managerDocumentRepository;
 
