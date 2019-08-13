@@ -10,13 +10,23 @@ public class OrgUnitManagerEndpoint {
     @Autowired
     private FindingManagerService findManagerService;
 
+    @Autowired
+    private FindingManagerService findManagerServiceCache;
+
     public ManagerJS findOrgUnitManager(String orgUnitId, Boolean noCache) {
-        Manager manager = findManagerService.findByOrgUnitOrDefault(orgUnitId, noCache);
+        Manager manager = findManagerService(noCache).findByOrgUnitOrDefault(orgUnitId);
         return new ManagerJS(
                 manager.getId(),
                 orgUnitId,
                 manager.getFirstName(),
                 manager.getLastName());
+    }
+
+    private FindingManagerService findManagerService(Boolean noCache) {
+        if (noCache) {
+            return findManagerService;
+        }
+        return findManagerServiceCache;
     }
 
     public static class ManagerJS {

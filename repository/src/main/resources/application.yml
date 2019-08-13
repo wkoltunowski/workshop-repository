@@ -1,0 +1,3 @@
+manager_repository:
+  cache: "expireAfterWrite = 15m, maximumSize = 10000"
+
